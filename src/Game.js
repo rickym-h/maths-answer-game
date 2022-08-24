@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import "./Game.css"
+import QuestionComponent from "./components/QuestionComponent";
 
 class Game extends Component {
     // eslint-disable-next-line no-useless-constructor
@@ -33,6 +34,13 @@ class Game extends Component {
         })
     }
 
+    gameOver = () => {
+        console.log("GAME OVER")
+        console.log("Score: " + this.state.score)
+        // todo show an alert of some kind
+        // todo set currentlyPlaying to false
+    }
+
     render() {
         // todo replace dev button with a question element which will ask a question with a timer, given difficulty and score
         // todo if the question is answered, rerender
@@ -46,6 +54,13 @@ class Game extends Component {
                     Score: {this.state.score}
                     <br/>
                     <button onClick={this.incrementScore}>DEVELOPMENT BUTTON</button>
+                    <QuestionComponent
+                        score={this.state.score}
+                        difficulty={this.state.difficulty}
+
+                        submittedCorrectAnswer={this.incrementScore}
+                        gameOver={this.gameOver}
+                    />
                 </div>
             )
         } else {
