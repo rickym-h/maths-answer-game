@@ -106,6 +106,11 @@ class QuestionComponent extends Component {
         }
     }
 
+    timeRunOut = () => {
+        console.log("RAN OUT OF TIME")
+        this.props.gameOver()
+    }
+
     render() {
         let question = this.generateQuestion();
         let answers = this.generateAnswersFromQuestion(question);
@@ -115,25 +120,34 @@ class QuestionComponent extends Component {
         // Format the question and answers in a way to be rendered
         //this.shuffle(answers);
         question = question.join("")
+
+
+        let timerSeconds = 5;
+
+        setTimeout(this.timeRunOut, timerSeconds*1000)
+        console.log("TIMER STARTED")
+
         return (
             <div className={"QuestionComponent"}>
                 QUESTION: {question}
                 <br/>
-                {
-                    answers.map((ans,i) => {
-                        let val = ans;
-                        return (
-                            <button
-                                key = {i}
-                                className={"answerButton"}
-                                onClick={() => this.submitAnswer(question, val)}
-                            >
-                                {val}
-                            </button>
-                        )
+                <div className={"answerButtonContainer"}>
+                    {
+                        answers.map((ans,i) => {
+                            let val = ans;
+                            return (
+                                <button
+                                    key = {i}
+                                    className={"answerButton"}
+                                    onClick={() => this.submitAnswer(question, val)}
+                                >
+                                    {val}
+                                </button>
+                            )
 
-                    })
-                }
+                        })
+                    }
+                </div>
                 <br/>
                 <div className={"bar"}>
                     <div className={"in"}></div>

@@ -5,6 +5,22 @@
     justify-content: center;
 }
 
+.answerButtonContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.answerButton {
+    padding: 50px 100px;
+    background-color: dodgerblue;
+    font-size: inherit;
+}
+.answerButton:hover {
+    background-color: blue;
+    cursor: pointer;
+}
+
 .bar {
     border: 1px solid #666;
     height: 20px;
@@ -16,7 +32,7 @@
     float: right;
      animation: fill 5s linear 1;
      height: 100%;
-     background-color: pink;
+     background-color: dodgerblue;
 }
 
 @keyframes fill {
