@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import "./QuestionComponent.css"
+import LoadingBar from "./LoadingBar";
 
 class QuestionComponent extends Component {
     // eslint-disable-next-line no-useless-constructor
@@ -136,6 +137,7 @@ class QuestionComponent extends Component {
         let myTimer = setTimeout(this.timeRunOut, timerSeconds)
         console.log("TIMER STARTED")
 
+
         return (
             <div className={"QuestionComponent"}>
                 QUESTION: {question}
@@ -158,9 +160,10 @@ class QuestionComponent extends Component {
                     }
                 </div>
                 <br/>
-                <div className={"bar"}>
-                    <div className={"in"}></div>
-                </div>
+                <LoadingBar
+                    key={this.props.score}
+                    miliseconds={timerSeconds}
+                />
             </div>
         )
 

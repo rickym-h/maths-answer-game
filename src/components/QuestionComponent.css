@@ -30,7 +30,6 @@
 }
 .in {
     float: right;
-     animation: fill 5s linear 1;
      height: 100%;
      background-color: dodgerblue;
 }
