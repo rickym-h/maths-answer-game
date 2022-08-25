@@ -44,23 +44,46 @@ class QuestionComponent extends Component {
         return question;
     }
 
+    // generate possible answers
     generateAnswersFromQuestion = (question) => {
         // return an array of numbers, the first of which will be the correct answer
-        let NUM_OF_ANSWERS = this.props.difficulty+2;
+        let NUM_OF_FAKE_ANSWERS = this.props.difficulty + 1;
 
-        // Generate an array of length == the number of answers.
-        let answers = [...Array(NUM_OF_ANSWERS)].map(x => question[0]);
+        let answers = [];
+
+        let questionAsString = question.join("");
+        let trueAnswer=this.evaluateMathsEquation(questionAsString);
+        answers.push(trueAnswer)
+
+        for (let i = 0; i < NUM_OF_FAKE_ANSWERS; i++) {
+            // create new random representation of string
+            let copiedQ = [...question];
+            for (let j = 1; j < copiedQ.length; j+=2) {
+                let possibleOps = ['+','-','*','/'];
+                possibleOps = possibleOps.filter(x=>{return x!==copiedQ[j]})
+                copiedQ[j] = possibleOps[Math.floor(Math.random()*3)];
+            }
+
+            // eval that string and push to answers
+            answers.push(this.evaluateMathsEquation(copiedQ.join("")))
+        }
+
         return answers;
     }
 
-    // generate possible answers
+    evaluateMathsEquation = (equationAsString) => {
+        // eslint-disable-next-line no-new-func
+        let ans = Function(`return(${equationAsString})`)();
+        return ans.toPrecision(3);
+    }
+
+
 
     render() {
         let question = this.generateQuestion();
         console.log(question)
         let answers = this.generateAnswersFromQuestion(question);
         console.log(answers)
-        console.log(question.join(""))
         return (
             <div>
                 QUESTION:
