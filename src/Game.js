@@ -57,7 +57,6 @@ class Game extends Component {
                     <br/>
                     Score: {this.state.score}
                     <br/>
-                    <button onClick={this.incrementScore}>DEVELOPMENT BUTTON</button>
                     <QuestionComponent
                         score={this.state.score}
                         difficulty={this.state.difficulty}
