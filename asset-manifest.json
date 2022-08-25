@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/maths-answer-game/static/css/main.a3817983.css",
+    "main.js": "/maths-answer-game/static/js/main.56d44313.js",
+    "index.html": "/maths-answer-game/index.html",
+    "main.a3817983.css.map": "/maths-answer-game/static/css/main.a3817983.css.map",
+    "main.56d44313.js.map": "/maths-answer-game/static/js/main.56d44313.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a3817983.css",
+    "static/js/main.56d44313.js"
+  ]
+}
