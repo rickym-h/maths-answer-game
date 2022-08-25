@@ -77,16 +77,61 @@ class QuestionComponent extends Component {
         return ans.toPrecision(3);
     }
 
+    shuffle = (array) =>  {
+        let currentIndex = array.length,  randomIndex;
 
+        // While there remain elements to shuffle.
+        while (currentIndex !== 0) {
+
+            // Pick a remaining element.
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex--;
+
+            // And swap it with the current element.
+            [array[currentIndex], array[randomIndex]] = [
+                array[randomIndex], array[currentIndex]];
+        }
+
+        return array;
+    }
+
+    submitAnswer = (question, val) => {
+        if (this.evaluateMathsEquation(question) === val) {
+            console.log("CORRECT")
+        } else {
+            console.log("WRONG")
+        }
+    }
 
     render() {
         let question = this.generateQuestion();
-        console.log(question)
         let answers = this.generateAnswersFromQuestion(question);
-        console.log(answers)
+        let trueAns = answers[0]
+        console.log(trueAns)
+
+        // Format the question and answers in a way to be rendered
+        //this.shuffle(answers);
+        question = question.join("")
         return (
             <div>
-                QUESTION:
+                QUESTION: {question}
+                <br/>
+                {
+                    answers.map((ans,i) => {
+                        let val = ans;
+                        return (
+                            <button
+                                key = {i}
+                                // todo add css for answerButton
+                                className={"answerButton"}
+                                onClick={() => this.submitAnswer(question, val)}
+                            >
+                                {val}
+                            </button>
+                        )
+
+                    })
+                }
             </div>
         )
 
