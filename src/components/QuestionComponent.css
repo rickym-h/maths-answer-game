@@ -1,0 +1,29 @@
+.QuestionComponent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.bar {
+    border: 1px solid #666;
+    height: 20px;
+    width: 70%;
+
+
+}
+.in {
+    float: right;
+     animation: fill 5s linear 1;
+     height: 100%;
+     background-color: pink;
+}
+
+@keyframes fill {
+    0% {
+        width: 0%;
+    }
+    100% {
+        width: 100%;
+    }
+}

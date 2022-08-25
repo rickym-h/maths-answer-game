@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import "./QuestionComponent.css"
 
 class QuestionComponent extends Component {
     // eslint-disable-next-line no-useless-constructor
@@ -115,7 +116,7 @@ class QuestionComponent extends Component {
         //this.shuffle(answers);
         question = question.join("")
         return (
-            <div>
+            <div className={"QuestionComponent"}>
                 QUESTION: {question}
                 <br/>
                 {
@@ -124,7 +125,6 @@ class QuestionComponent extends Component {
                         return (
                             <button
                                 key = {i}
-                                // todo add css for answerButton
                                 className={"answerButton"}
                                 onClick={() => this.submitAnswer(question, val)}
                             >
@@ -134,6 +134,10 @@ class QuestionComponent extends Component {
 
                     })
                 }
+                <br/>
+                <div className={"bar"}>
+                    <div className={"in"}></div>
+                </div>
             </div>
         )
 
