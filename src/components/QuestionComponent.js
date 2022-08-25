@@ -96,7 +96,8 @@ class QuestionComponent extends Component {
         return array;
     }
 
-    submitAnswer = (question, val) => {
+    submitAnswer = (question, val, timerToReset) => {
+        clearTimeout(timerToReset)
         if (this.evaluateMathsEquation(question) === val) {
             console.log("CORRECT")
             this.props.submittedCorrectAnswer()
@@ -111,6 +112,14 @@ class QuestionComponent extends Component {
         this.props.gameOver()
     }
 
+    // Function to calculate how much time should be given for a new question based on the score and difficulty
+    getTimeForQuestionMilisconds = (score, difficulty) => {
+        // get initial time for a given difficulty
+        difficulty = 5 + (difficulty * 3)
+        let multiplier = Math.pow(0.9, score)
+        return Math.floor(difficulty * multiplier * 1000)
+    }
+
     render() {
         let question = this.generateQuestion();
         let answers = this.generateAnswersFromQuestion(question);
@@ -122,9 +131,9 @@ class QuestionComponent extends Component {
         question = question.join("")
 
 
-        let timerSeconds = 5;
+        let timerSeconds = this.getTimeForQuestionMilisconds(this.props.score, this.props.difficulty);
 
-        setTimeout(this.timeRunOut, timerSeconds*1000)
+        let myTimer = setTimeout(this.timeRunOut, timerSeconds)
         console.log("TIMER STARTED")
 
         return (
@@ -139,7 +148,7 @@ class QuestionComponent extends Component {
                                 <button
                                     key = {i}
                                     className={"answerButton"}
-                                    onClick={() => this.submitAnswer(question, val)}
+                                    onClick={() => this.submitAnswer(question, val, myTimer)}
                                 >
                                     {val}
                                 </button>
