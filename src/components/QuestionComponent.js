@@ -117,7 +117,7 @@ class QuestionComponent extends Component {
     getTimeForQuestionMilisconds = (score, difficulty) => {
         // get initial time for a given difficulty
         difficulty = 5 + (difficulty * 3)
-        let multiplier = Math.pow(0.9, score)
+        let multiplier = Math.pow(0.95, score)
         return Math.floor(difficulty * multiplier * 1000)
     }
 
@@ -128,7 +128,7 @@ class QuestionComponent extends Component {
         console.log(trueAns)
 
         // Format the question and answers in a way to be rendered
-        //this.shuffle(answers);
+        this.shuffle(answers);
         question = question.join("")
 
 
