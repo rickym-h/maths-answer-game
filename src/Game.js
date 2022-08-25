@@ -38,7 +38,11 @@ class Game extends Component {
         console.log("GAME OVER")
         console.log("Score: " + this.state.score)
         // todo show an alert of some kind
+        alert("GAME OVER")
         // todo set currentlyPlaying to false
+        this.setState({
+            currentlyPlaying: false,
+        })
     }
 
     render() {

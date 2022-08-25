@@ -98,8 +98,10 @@ class QuestionComponent extends Component {
     submitAnswer = (question, val) => {
         if (this.evaluateMathsEquation(question) === val) {
             console.log("CORRECT")
+            this.props.submittedCorrectAnswer()
         } else {
             console.log("WRONG")
+            this.props.gameOver()
         }
     }
 
