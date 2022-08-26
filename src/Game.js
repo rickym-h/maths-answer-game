@@ -1,25 +1,64 @@
 import React, {Component} from "react";
 import "./Game.css"
 import QuestionComponent from "./components/QuestionComponent";
+import DisplayScoreComponent from "./components/DisplayScoreComponent";
+
+// function storageAvailable(type) {
+//     let storage;
+//     try {
+//         storage = window[type];
+//         const x = '__storage_test__';
+//         storage.setItem(x, x);
+//         storage.removeItem(x);
+//         return true;
+//     }
+//     catch (e) {
+//         return e instanceof DOMException && (
+//                 // everything except Firefox
+//                 e.code === 22 ||
+//                 // Firefox
+//                 e.code === 1014 ||
+//                 // test name field too, because code might not be present
+//                 // everything except Firefox
+//                 e.name === 'QuotaExceededError' ||
+//                 // Firefox
+//                 e.name === 'NS_ERROR_DOM_QUOTA_REACHED') &&
+//             // acknowledge QuotaExceededError only if there's something already stored
+//             (storage && storage.length !== 0);
+//     }
+// }
 
 class Game extends Component {
     // eslint-disable-next-line no-useless-constructor
     constructor(props) {
         super(props);
 
+        // Initialise high scores
+        let highScores = [0,0,0]
+
+        // if (storageAvailable('localStorage')) {
+        //     if (localStorage.getItem("highScores") !== null) {
+        //         highScores = JSON.parse(localStorage.getItem("highScores"));
+        //     }
+        // }
+
+
         this.state = {
             currentlyPlaying: false,
             score: 0,
             difficulty: 0,
+            highScores: highScores
         }
     }
 
+    // Changes the difficulty based on a click event
     onDifficultyChange = (ev) => {
         this.setState({
             difficulty: Number(ev.target.value),
         })
     }
 
+    // Initialise the game and set the currentlyPlaying state to render the actual game interface
     startGame = () => {
         console.log("STARTING GAME")
         this.setState({
@@ -35,13 +74,14 @@ class Game extends Component {
     }
 
     gameOver = () => {
-        console.log("GAME OVER")
-        console.log("Score: " + this.state.score)
-        // todo show an alert of some kind
-        alert("GAME OVER")
-        // todo set currentlyPlaying to false
+        let currentHighScores = this.state.highScores;
+        currentHighScores[this.state.difficulty] = Math.max(this.state.score, currentHighScores[this.state.difficulty]);
+
+        alert("GAME OVER\nScore: "+this.state.score)
+
         this.setState({
             currentlyPlaying: false,
+            highScores: currentHighScores,
         })
     }
 
@@ -70,6 +110,11 @@ class Game extends Component {
             // Game is not being played - show difficulty selector.
             return (
                 <div className={"Game"}>
+                    <div className={"highScoreContainer"}>
+                        <DisplayScoreComponent displayName={"Easy"} displayValue={this.state.highScores[0]}/>
+                        <DisplayScoreComponent displayName={"Medium"} displayValue={this.state.highScores[1]}/>
+                        <DisplayScoreComponent displayName={"Hard"} displayValue={this.state.highScores[2]}/>
+                    </div>
                     Select difficulty:
                     <form onChange={this.onDifficultyChange}>
                         <input name={"diff"} type={"radio"} id={0} value={0} defaultChecked/>
