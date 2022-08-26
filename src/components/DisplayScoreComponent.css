@@ -1,0 +1,17 @@
+
+
+.highScoreContainer {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+}
+
+.DisplayScoreComponent {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid red;
+
+    width: 150px;
+
+    margin: 0 10px;
+}

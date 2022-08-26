@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import "./DisplayScoreComponent.css"
 
 class DisplayScoreComponent extends Component {
     // eslint-disable-next-line no-useless-constructor
@@ -26,8 +27,8 @@ class DisplayScoreComponent extends Component {
     render() {
         return (
             <div className={"DisplayScoreComponent"}>
-                {this.state.name}
-                {this.state.value}
+                <div>{this.state.name}</div>
+                <div>{this.state.value}</div>
             </div>
         )
     }

@@ -110,6 +110,7 @@ class Game extends Component {
             // Game is not being played - show difficulty selector.
             return (
                 <div className={"Game"}>
+                    High Scores
                     <div className={"highScoreContainer"}>
                         <DisplayScoreComponent displayName={"Easy"} displayValue={this.state.highScores[0]}/>
                         <DisplayScoreComponent displayName={"Medium"} displayValue={this.state.highScores[1]}/>
