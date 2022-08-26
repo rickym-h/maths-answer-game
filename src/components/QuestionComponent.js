@@ -73,12 +73,15 @@ class QuestionComponent extends Component {
         return answers;
     }
 
+    // Takes a string and returns the answer of the equation represented as a string
+    // in the format of 2dp with truncated zeroes.
     evaluateMathsEquation = (equationAsString) => {
         // eslint-disable-next-line no-new-func
         let ans = Function(`return(${equationAsString})`)();
         return parseFloat(ans.toFixed(2));
     }
 
+    // Function to shuffle an array in place
     shuffle = (array) =>  {
         let currentIndex = array.length,  randomIndex;
 
@@ -97,6 +100,8 @@ class QuestionComponent extends Component {
         return array;
     }
 
+    // Checks whether an answer is valid or not and calls the necessary props functions
+    // Also removes a provided timer (so old timers do not continue)
     submitAnswer = (question, val, timerToReset) => {
         clearTimeout(timerToReset)
         if (this.evaluateMathsEquation(question) === val) {
@@ -108,6 +113,7 @@ class QuestionComponent extends Component {
         }
     }
 
+    // Function to run if the user runs out of time
     timeRunOut = () => {
         console.log("RAN OUT OF TIME")
         this.props.gameOver()
@@ -122,21 +128,21 @@ class QuestionComponent extends Component {
     }
 
     render() {
+        // Generate a question and some answers for it. Extracts the actual answer - and then shuffles the answers
+        // Also creates the question in a readable format for the user from the array representation.
         let question = this.generateQuestion();
         let answers = this.generateAnswersFromQuestion(question);
         let trueAns = answers[0]
-        console.log(trueAns)
-
         // Format the question and answers in a way to be rendered
         this.shuffle(answers);
         question = question.join("")
 
 
+        // Calculate how much time should be allowed for the player to answer a question
         let timerSeconds = this.getTimeForQuestionMilisconds(this.props.score, this.props.difficulty);
 
+        // Create timer to countdown for the player
         let myTimer = setTimeout(this.timeRunOut, timerSeconds)
-        console.log("TIMER STARTED")
-
 
         return (
             <div className={"QuestionComponent"}>
