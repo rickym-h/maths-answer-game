@@ -76,7 +76,7 @@ class QuestionComponent extends Component {
     evaluateMathsEquation = (equationAsString) => {
         // eslint-disable-next-line no-new-func
         let ans = Function(`return(${equationAsString})`)();
-        return ans.toPrecision(3);
+        return parseFloat(ans.toFixed(2));
     }
 
     shuffle = (array) =>  {
