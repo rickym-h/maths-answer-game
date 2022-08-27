@@ -126,11 +126,11 @@ class Game extends Component {
                     Select difficulty:
                     <form onChange={this.onDifficultyChange} className={"difficulty-selector"}>
                         <input name={"diff"} type={"radio"} id={0} value={0} defaultChecked/>
-                        <label htmlFor={0}> Easy </label>
+                        <label htmlFor={0} className={"unselectable"}> Easy </label>
                         <input name={"diff"} type={"radio"} id={1} value={1}/>
-                        <label htmlFor={1}> Medium </label>
+                        <label htmlFor={1} className={"unselectable"}> Medium </label>
                         <input name={"diff"} type={"radio"} id={2} value={2}/>
-                        <label htmlFor={2}> Hard </label>
+                        <label htmlFor={2} className={"unselectable"}> Hard </label>
                     </form>
                     <button onClick={this.startGame}> Start Game! </button>
                 </div>
