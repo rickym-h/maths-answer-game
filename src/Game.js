@@ -132,7 +132,7 @@ class Game extends Component {
                         <input name={"diff"} type={"radio"} id={2} value={2}/>
                         <label htmlFor={2} className={"unselectable"}> Hard </label>
                     </form>
-                    <button onClick={this.startGame}> Start Game! </button>
+                    <button onClick={this.startGame} id={"startGameButton"}> Start Game! </button>
                 </div>
             );
         }
