@@ -29,7 +29,12 @@ class QuestionComponent extends Component {
         let possibleOps = ['+','-','*','/'];
         let ops = [];
         for (let i = 0; i < nums.length-1; i++) {
-            ops.push(possibleOps[Math.floor(Math.random()*4)])
+            if (ops[ops.length-1] === '/') {
+                let myPossibleOps = ['+','-','*'];
+                ops.push(myPossibleOps[Math.floor(Math.random()*3)])
+            } else {
+                ops.push(possibleOps[Math.floor(Math.random()*4)])
+            }
         }
 
         // Generate the question by alternating pushing the numbers and the operations.

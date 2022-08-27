@@ -103,7 +103,7 @@ class Game extends Component {
                     Solve the question!
                     <br/>
                     <div className={"highScoreContainer"}>
-                        <DisplayScoreComponent displayName={"Score"} displayValue={this.state.score}/>
+                        <DisplayScoreComponent key={`score:${this.state.score}`} displayName={"Score"} displayValue={this.state.score}/>
                     </div>
                     <br/>
                     <QuestionComponent
