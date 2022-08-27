@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/maths-answer-game/static/css/main.6730acde.css",
-    "main.js": "/maths-answer-game/static/js/main.cae24a0f.js",
+    "main.css": "/maths-answer-game/static/css/main.5c29fedc.css",
+    "main.js": "/maths-answer-game/static/js/main.3e6f8382.js",
     "index.html": "/maths-answer-game/index.html",
-    "main.6730acde.css.map": "/maths-answer-game/static/css/main.6730acde.css.map",
-    "main.cae24a0f.js.map": "/maths-answer-game/static/js/main.cae24a0f.js.map"
+    "main.5c29fedc.css.map": "/maths-answer-game/static/css/main.5c29fedc.css.map",
+    "main.3e6f8382.js.map": "/maths-answer-game/static/js/main.3e6f8382.js.map"
   },
   "entrypoints": [
-    "static/css/main.6730acde.css",
-    "static/js/main.cae24a0f.js"
+    "static/css/main.5c29fedc.css",
+    "static/js/main.3e6f8382.js"
   ]
 }
