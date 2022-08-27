@@ -142,7 +142,9 @@ class QuestionComponent extends Component {
         let timerSeconds = this.getTimeForQuestionMilisconds(this.props.score, this.props.difficulty);
 
         // Create timer to countdown for the player
-        let myTimer = setTimeout(this.timeRunOut, timerSeconds)
+        let myTimer;
+
+        myTimer = setTimeout(this.timeRunOut, timerSeconds)
 
         return (
             <div className={"QuestionComponent"}>
