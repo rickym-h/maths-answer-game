@@ -89,11 +89,11 @@ class Game extends Component {
     }
 
     // When game is over, tell the user and update highscores. Reset game back to main menu too
-    gameOver = () => {
+    gameOver = (reason) => {
         let currentHighScores = this.state.highScores;
         currentHighScores[this.state.difficulty] = Math.max(this.state.score, currentHighScores[this.state.difficulty]);
 
-        alert("GAME OVER\nScore: "+this.state.score)
+        alert("GAME OVER\nScore: "+this.state.score+"\nReason: " + reason)
 
         this.setState({
             currentlyPlaying: false,

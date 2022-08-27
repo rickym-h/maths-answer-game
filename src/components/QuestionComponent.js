@@ -110,18 +110,15 @@ class QuestionComponent extends Component {
     submitAnswer = (question, val, timerToReset) => {
         clearTimeout(timerToReset)
         if (this.evaluateMathsEquation(question) === val) {
-            console.log("CORRECT")
             this.props.submittedCorrectAnswer()
         } else {
-            console.log("WRONG")
-            this.props.gameOver()
+            this.props.gameOver("Wrong answer!")
         }
     }
 
     // Function to run if the user runs out of time
     timeRunOut = () => {
-        console.log("RAN OUT OF TIME")
-        this.props.gameOver()
+        this.props.gameOver("Ran out of time...")
     }
 
     // Function to calculate how much time should be given for a new question based on the score and difficulty
