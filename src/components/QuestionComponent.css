@@ -12,6 +12,11 @@
     width: 100vw;
 }
 
+.question {
+    letter-spacing: 10px;
+    border: 1px solid red;
+}
+
 .answerButton {
     padding: 30px 70px;
     background-color: dodgerblue;

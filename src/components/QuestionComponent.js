@@ -153,7 +153,7 @@ class QuestionComponent extends Component {
 
         return (
             <div className={"QuestionComponent"}>
-                QUESTION: {question}
+                <p className={"question"}>{question}</p>
                 <br/>
                 <div className={"answerButtonContainer"}>
                     {
