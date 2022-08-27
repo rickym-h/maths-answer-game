@@ -9,12 +9,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100vw;
 }
 
 .answerButton {
-    padding: 50px 100px;
+    padding: 30px 70px;
     background-color: dodgerblue;
     font-size: inherit;
+    color: black;
 }
 .answerButton:hover {
     background-color: blue;

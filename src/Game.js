@@ -3,30 +3,32 @@ import "./Game.css"
 import QuestionComponent from "./components/QuestionComponent";
 import DisplayScoreComponent from "./components/DisplayScoreComponent";
 
-// function storageAvailable(type) {
-//     let storage;
-//     try {
-//         storage = window[type];
-//         const x = '__storage_test__';
-//         storage.setItem(x, x);
-//         storage.removeItem(x);
-//         return true;
-//     }
-//     catch (e) {
-//         return e instanceof DOMException && (
-//                 // everything except Firefox
-//                 e.code === 22 ||
-//                 // Firefox
-//                 e.code === 1014 ||
-//                 // test name field too, because code might not be present
-//                 // everything except Firefox
-//                 e.name === 'QuotaExceededError' ||
-//                 // Firefox
-//                 e.name === 'NS_ERROR_DOM_QUOTA_REACHED') &&
-//             // acknowledge QuotaExceededError only if there's something already stored
-//             (storage && storage.length !== 0);
-//     }
-// }
+
+// Function to check whether storage is avaliable in the browser to avoid errors when interacting with localstorage
+function storageAvailable(type) {
+    let storage;
+    try {
+        storage = window[type];
+        const x = '__storage_test__';
+        storage.setItem(x, x);
+        storage.removeItem(x);
+        return true;
+    }
+    catch (e) {
+        return e instanceof DOMException && (
+                // everything except Firefox
+                e.code === 22 ||
+                // Firefox
+                e.code === 1014 ||
+                // test name field too, because code might not be present
+                // everything except Firefox
+                e.name === 'QuotaExceededError' ||
+                // Firefox
+                e.name === 'NS_ERROR_DOM_QUOTA_REACHED') &&
+            // acknowledge QuotaExceededError only if there's something already stored
+            (storage && storage.length !== 0);
+    }
+}
 
 class Game extends Component {
     // eslint-disable-next-line no-useless-constructor
@@ -36,12 +38,12 @@ class Game extends Component {
         // Initialise high scores
         let highScores = [0,0,0]
 
-        // if (storageAvailable('localStorage')) {
-        //     if (localStorage.getItem("highScores") !== null) {
-        //         highScores = JSON.parse(localStorage.getItem("highScores"));
-        //     }
-        // }
-
+        // If localstorage is available and the key exists, update highscores
+        if (storageAvailable('localStorage')) {
+            if (localStorage.getItem("highScores") !== null) {
+                highScores = JSON.parse(localStorage.getItem("highScores"));
+            }
+        }
 
         this.state = {
             currentlyPlaying: false,
@@ -67,12 +69,14 @@ class Game extends Component {
         })
     }
 
+    // Increment score by 1
     incrementScore = () => {
         this.setState({
             score: this.state.score+1,
         })
     }
 
+    // When game is over, tell the user and update highscores. Reset game back to main menu too
     gameOver = () => {
         let currentHighScores = this.state.highScores;
         currentHighScores[this.state.difficulty] = Math.max(this.state.score, currentHighScores[this.state.difficulty]);
@@ -83,12 +87,15 @@ class Game extends Component {
             currentlyPlaying: false,
             highScores: currentHighScores,
         })
+
+        // Assign highscores to local storage
+        if (storageAvailable('localStorage')) {
+            console.log("SETTING HIGH SCORES")
+            localStorage.setItem("highScores", JSON.stringify(currentHighScores))
+        }
     }
 
     render() {
-        // todo replace dev button with a question element which will ask a question with a timer, given difficulty and score
-        // todo if the question is answered, rerender
-        // todo if the timer runs out, show an end game screen and set currentlyPlaying to false
         if (this.state.currentlyPlaying) {
             // Game is being played - show game.
             return (
@@ -117,7 +124,7 @@ class Game extends Component {
                         <DisplayScoreComponent displayName={"Hard"} displayValue={this.state.highScores[2]}/>
                     </div>
                     Select difficulty:
-                    <form onChange={this.onDifficultyChange}>
+                    <form onChange={this.onDifficultyChange} className={"difficulty-selector"}>
                         <input name={"diff"} type={"radio"} id={0} value={0} defaultChecked/>
                         <label htmlFor={0}> Easy </label>
                         <input name={"diff"} type={"radio"} id={1} value={1}/>

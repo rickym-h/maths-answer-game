@@ -6,3 +6,7 @@
     padding: 50px 0;
     width: 100vw;
 }
+
+.difficulty-selector {
+    border: 1px solid green;
+}
