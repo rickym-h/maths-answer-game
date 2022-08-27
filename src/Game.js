@@ -53,6 +53,18 @@ class Game extends Component {
         }
     }
 
+    // Reset highscores
+    resetHighScores = () => {
+        this.setState({
+            highScores: [0,0,0]
+        })
+        // Assign highscores to local storage
+        if (storageAvailable('localStorage')) {
+            console.log("SETTING HIGH SCORES")
+            localStorage.setItem("highScores", JSON.stringify([0,0,0]))
+        }
+    }
+
     // Changes the difficulty based on a click event
     onDifficultyChange = (ev) => {
         this.setState({
@@ -125,7 +137,8 @@ class Game extends Component {
                         <DisplayScoreComponent displayName={"Medium"} displayValue={this.state.highScores[1]}/>
                         <DisplayScoreComponent displayName={"Hard"} displayValue={this.state.highScores[2]}/>
                     </div>
-                    Select difficulty:
+                    <button id={"resetHighScoreButton"} onClick={this.resetHighScores}>Reset High Scores</button>
+                    <br/>
                     <form onChange={this.onDifficultyChange} className={"difficulty-selector"}>
                         <input name={"diff"} type={"radio"} id={0} value={0} defaultChecked/>
                         <label htmlFor={0} className={"unselectable"}> Easy </label>

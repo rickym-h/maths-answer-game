@@ -48,6 +48,18 @@
     background-color: #c57108;
 }
 
+#resetHighScoreButton {
+    background-color: orange;
+    padding: 5px 10px;
+    margin: 5px;
+    font: inherit;
+    font-size: small;
+    cursor: pointer;
+}
+#resetHighScoreButton:hover {
+    background-color: #c57108;
+}
+
 .unselectable {
     -webkit-touch-callout: none;
     -webkit-user-select: none;
