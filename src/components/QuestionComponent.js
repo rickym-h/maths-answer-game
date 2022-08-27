@@ -124,8 +124,9 @@ class QuestionComponent extends Component {
     // Function to calculate how much time should be given for a new question based on the score and difficulty
     getTimeForQuestionMilisconds = (score, difficulty) => {
         // get initial time for a given difficulty
-        difficulty = 5 + (difficulty * 3)
-        let multiplier = Math.pow(0.95, score)
+        difficulty = 5 + (difficulty * 4)
+        let multiplier = Math.pow(0.95, Math.floor(score/5))
+        console.log("SETTING TIME TO " + Math.floor(difficulty * multiplier * 1000))
         return Math.floor(difficulty * multiplier * 1000)
     }
 
@@ -134,7 +135,6 @@ class QuestionComponent extends Component {
         // Also creates the question in a readable format for the user from the array representation.
         let question = this.generateQuestion();
         let answers = this.generateAnswersFromQuestion(question);
-        let trueAns = answers[0]
         // Format the question and answers in a way to be rendered
         this.shuffle(answers);
         question = question.join("")
