@@ -5,6 +5,8 @@ will add one to the score, and give you a little less time to answer the next qu
 
 Makes use of ReactJS to render all the components and handle score tracking.
 
+Live preview: https://rickym-h.github.io/maths-answer-game/
+
 # Features
 
 - ReactJS to render UI
